@@ -77,5 +77,6 @@ EXPOSE 1414 4414 7800 9080
 # Always put the MQ data directory in a Docker volume
 VOLUME /var/mqm
 
+CMD ["/bin/sh", "-c", "mq.sh"]
 # Set entrypoint to run management script
-ENTRYPOINT ["iib_manage.sh", "mq.sh"]
+ENTRYPOINT ["iib_manage.sh"]
