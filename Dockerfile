@@ -6,7 +6,7 @@ MAINTAINER Peter Weismann Peter.Weismann@yandex.com
 
 # Install curl
 RUN apt-get update && \
-    apt-get install -y curl bash bc rmp tar && \
+    apt-get install -y curl bash bc rpm tar && \
     rm -rf /var/lib/apt/lists/*
 
 # Install IIB V10 Developer edition
