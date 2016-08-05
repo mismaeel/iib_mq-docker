@@ -42,6 +42,13 @@ RUN export DEBIAN_FRONTEND=noninteractive \
   # Clean up all the downloaded files
   && rm -rf /tmp/mq \
   && rm -rf /var/lib/apt/lists/*
+ 
+# Copy needed initialization & mqsc scripts to the image
+COPY mq.sh /usr/local/bin/
+COPY mq-license-check.sh /usr/local/bin/
+COPY *.mqsc /etc/mqm/
+
+RUN chmod +x /usr/local/bin/*.sh
 
 # Configure system
 COPY kernel_settings.sh /tmp/
