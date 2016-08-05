@@ -8,7 +8,11 @@ MAINTAINER Peter Weismann Peter.Weismann@yandex.com
 RUN apt-get update && \
     apt-get install -y curl bash bc rpm tar && \
     rm -rf /var/lib/apt/lists/*
-	
+
+# Copy startup script which invokes the MQ & IIB startup scripts and make it executable
+COPY execute_startup_scripts.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/execute_startup_scripts.sh
+
 # MQ: Copy all needed scripts to image and make them executable
 COPY mq.sh /usr/local/bin/
 COPY mq-license-check.sh /usr/local/bin/
