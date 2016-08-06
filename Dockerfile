@@ -14,9 +14,9 @@ COPY execute_startup_scripts.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/execute_startup_scripts.sh
 
 # MQ: Copy all needed scripts to image and make them executable
-COPY mq.sh /usr/local/bin/
-COPY mq-license-check.sh /usr/local/bin/
-COPY *.mqsc /etc/mqm/
+COPY MQ/mq.sh /usr/local/bin/
+COPY MQ/mq-license-check.sh /usr/local/bin/
+COPY MQ/*.mqsc /etc/mqm/
 RUN chmod a+rx /usr/local/bin/*.sh 
 
 # Install MQ Developer Edition
@@ -48,10 +48,10 @@ RUN export DEBIAN_FRONTEND=noninteractive \
   && rm -rf /var/lib/apt/lists/*
   
 # IIB: Copy all needed scripts to image and make them executable
-COPY kernel_settings.sh /tmp/
-COPY iib_manage.sh /usr/local/bin/
-COPY iib-license-check.sh /usr/local/bin/
-COPY iib_env.sh /usr/local/bin/
+COPY IIB/kernel_settings.sh /tmp/
+COPY IIB/iib_manage.sh /usr/local/bin/
+COPY IIB/iib-license-check.sh /usr/local/bin/
+COPY IIB/iib_env.sh /usr/local/bin/
 RUN chmod +x /tmp/kernel_settings.sh
 RUN chmod +x /usr/local/bin/*.sh
 
@@ -88,4 +88,4 @@ EXPOSE 1414 4414 7800 9080
 VOLUME /var/mqm
 
 # Run mq & iib setup scripts
-ENTRYPOINT ["/bin/sh", "-c", execute_startup_scripts.sh"]
+ENTRYPOINT ["/bin/sh", "-c", "execute_startup_scripts.sh"]
