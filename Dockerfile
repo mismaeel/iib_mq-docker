@@ -88,4 +88,4 @@ EXPOSE 1414 4414 7800 9080
 VOLUME /var/mqm
 
 # Run mq & iib setup scripts
-ENTRYPOINT ["execute_startup_scripts.sh"]
+ENTRYPOINT ["/bin/sh", "-c", execute_startup_scripts.sh"]
